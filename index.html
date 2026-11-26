@@ -1,9 +1,126 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>What makes a bad subway day? | Kenny Nguyen and Justin Dao</title>
-<link rel="stylesheet" href="style.css"><script defer src="vendor/d3.min.js"></script><script defer src="data.js"></script><script defer src="story.js"></script></head>
-<body><main aria-label="Slide presentation">
-<div class="slide">
-<section class="cover"><h1>What_makes_a_bad_subway_day_Nguyen_Dao</h1><p>File created on: 2026-11-26 17:32:50 EST</p><button id="start" aria-label="Start the Tableau story"></button></section>
-<section id="view" hidden><img id="art" alt=""><svg id="layer" viewBox="0 0 520 350" aria-label="Interactive chart marks"></svg><nav id="tabs" aria-label="Story points"></nav><div id="filters" hidden><label>Month<select id="month"><option value="">All</option></select></label><label>Line<select id="line"><option value="">All</option></select></label></div></section>
-</div><div class="tools"><button id="prev" aria-label="Previous slide">‹</button><output id="page" aria-live="polite"></output><button id="next" aria-label="Next slide">›</button><button id="full">Full screen</button></div></main><div id="tip" role="status" hidden></div></body></html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An interactive story about what the TTC's 2025 subway delay records reveal when you count entries and when you add their minutes.">
+  <title>What makes a bad subway day?</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="vendor/d3.min.js"></script>
+  <script defer src="data.js"></script>
+  <script defer src="story.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to story</a>
+  <header class="masthead">
+    <div class="wrap masthead-inner">
+      <a class="wordmark" href="#main">Toronto subway delays</a>
+      <nav aria-label="Story sections">
+        <a href="#records">Duration</a>
+        <a href="#ranking">Rankings</a>
+        <a href="#sunday">February 16</a>
+        <a href="#explore">Explore</a>
+      </nav>
+    </div>
+    <div class="reading-progress" aria-hidden="true"></div>
+  </header>
+
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="title">
+      <div>
+        <p class="meta">Toronto · Subway delay records · 2025</p>
+        <h1 id="title">What makes a bad subway day?</h1>
+        <p class="intro">At 9:18 a.m. on February 16, the TTC logged a weather delay at Eglinton. The entry lists <strong>807 minutes</strong>. How much can one row change the picture of an entire year?</p>
+        <p class="byline">Kenny Nguyen and Justin Dao</p>
+        <a class="start" href="#records">Read the story <span aria-hidden="true">↓</span></a>
+      </div>
+      <aside class="hero-note" aria-label="Eglinton weather entry">
+        <span class="meta">February 16, 2025 · 09:18</span>
+        <strong class="hero-value">807<span> min</span></strong>
+        <span>Eglinton Station</span>
+        <span class="subtle">Weather reports and related problems</span>
+      </aside>
+    </section>
+
+    <noscript><p class="wrap">Enable JavaScript to view the charts and explore the data.</p></noscript>
+
+    <section class="chapter wrap" id="records" aria-labelledby="records-title">
+      <div class="narration">
+        <h2 id="records-title">Most entries last five minutes or less.</h2>
+        <p>Start with all 9,094 subway records that list a positive delay in 2025. About six in ten fall in the shortest group. Just 212 list a delay of half an hour or more.</p>
+      </div>
+      <figure>
+        <h3>Share of positive-delay records</h3>
+        <div class="bar-chart" id="record-share"></div>
+        <figcaption>Each row in the TTC data counts once.</figcaption>
+      </figure>
+    </section>
+
+    <section class="chapter wrap" id="minutes" aria-labelledby="minutes-title">
+      <div class="narration">
+        <h2 id="minutes-title">Now add up the minutes.</h2>
+        <p>The longest group makes up just <strong>2.3% of records</strong>. Those same rows account for <strong>20.7% of recorded delay minutes</strong>. That makes a small group of entries worth a closer look.</p>
+      </div>
+      <figure>
+        <h3>Share of recorded delay minutes</h3>
+        <div class="bar-chart" id="minute-share"></div>
+        <figcaption>Same duration groups and scale. The total across all groups is 70,754 minutes.</figcaption>
+      </figure>
+    </section>
+
+    <section class="chapter wide wrap" id="ranking" aria-labelledby="ranking-title">
+      <div class="narration">
+        <h2 id="ranking-title">Weather moves up six places.</h2>
+        <p>Rank all 117 incident codes by how often they appear and weather comes in 14th. Rank them by total recorded minutes and weather moves into the top eight. Disorderly patron stays first on both lists.</p>
+      </div>
+      <div class="pair">
+        <figure><h3>Top eight by record count</h3><div class="bar-chart ranked" id="count-rank"></div></figure>
+        <figure><h3>Top eight by recorded minutes</h3><div class="bar-chart ranked" id="minute-rank"></div></figure>
+      </div>
+    </section>
+
+    <section class="chapter wrap" id="sunday" aria-labelledby="sunday-title">
+      <div class="narration">
+        <h2 id="sunday-title">Three entries on one Sunday.</h2>
+        <p>February 16 accounts for <strong>2,075 of 2,745</strong> recorded weather minutes that year. The three longest entries all came that day. Together they add up to 1,964 minutes. The median weather entry across the year was three minutes.</p>
+        <p>These durations can overlap. To figure out how long a rider at Eglinton waited, we would need to know when they arrived on the platform and when a train came.</p>
+      </div>
+      <figure>
+        <h3>February 16 weather records</h3>
+        <div class="bar-chart weather-chart" id="weather-records"></div>
+        <figcaption>The three longest weather entries in 2025, ordered by recorded duration.</figcaption>
+      </figure>
+    </section>
+
+    <section class="chapter wide wrap" id="explore" aria-labelledby="explore-title">
+      <div class="narration">
+        <h2 id="explore-title">Three rows move weather from 23rd to 8th.</h2>
+        <p>Set those three entries aside and weather drops to 781 minutes. Every other code keeps its full-year total. Use the switch to see how far the weather point moves. You can also explore how the picture changes by month or line.</p>
+      </div>
+      <figure class="explorer">
+        <h3>Count and duration by incident code</h3>
+        <div class="filters">
+          <label for="month">Month<select id="month"><option value="">Full year</option></select></label>
+          <label for="line">Subway line<select id="line"><option value="">All lines</option></select></label>
+          <label for="code">Inspect a code<select id="code"><option value="">Choose a code</option></select></label>
+          <button id="exclude" type="button" aria-pressed="false">Exclude the three weather rows</button>
+        </div>
+        <p id="scenario" class="scenario" aria-live="polite"></p>
+        <div id="scatter-chart"></div>
+        <figcaption>Each point represents one TTC code. Hover or tap a point to inspect it, or use the code menu.</figcaption>
+        <p id="inspector" class="inspector" aria-live="polite"></p>
+        <details>
+          <summary>View the chart data</summary>
+          <table><thead><tr><th scope="col">Incident code</th><th scope="col">Records</th><th scope="col">Minutes</th></tr></thead><tbody id="code-table"></tbody></table>
+        </details>
+      </figure>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <h2>Data and scope</h2>
+    <p>The charts use Toronto’s 2025 TTC Subway Delay Data and incident code descriptions. They include rows with positive <em>Min Delay</em> and exclude eight rows labelled outside the subway scope in the source. Rows with an unspecified line appear under “Unspecified.” Equal totals share a rank.</p>
+    <a href="https://open.toronto.ca/dataset/ttc-subway-delay-data/">TTC Subway Delay Data · Toronto Open Data</a>
+  </footer>
+</body>
+</html>
